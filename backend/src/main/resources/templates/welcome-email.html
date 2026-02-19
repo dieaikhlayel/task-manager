@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Task Manager</title>
+</head>
+
+<body style="font-family: Arial, sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #333;">Welcome to Task Manager!</h1>
+        <p>Dear <span th:text="${name}">User</span>,</p>
+        <p>Thank you for registering with Task Manager. We're excited to have you on board!</p>
+        <p>You can now start creating and managing your tasks efficiently.</p>
+        <div style="margin: 30px 0;">
+            <a href="http://localhost:3000/login"
+                style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                Get Started
+            </a>
+        </div>
+        <p>Best regards,<br>The Task Manager Team</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+# Create dev profile configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskmanager_dev
+    username: postgres
+    password: postgres
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+logging:
+  level:
+    com.taskmanager: DEBUG
+    org.springframework.web: DEBUG
+
+server:
+  port: 8081
