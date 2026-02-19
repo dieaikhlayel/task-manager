@@ -25,7 +25,9 @@ A full-stack task management application built with React and Java Spring Boot.
 
 task-manager/
 ├── backend/ # Spring Boot application
+|
 ├── frontend/ # React application
+|
 └── README.md
 
 ## Getting Started
