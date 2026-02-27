@@ -1,11 +1,44 @@
 # Task Manager Application
 
-A full-stack task management application built with React and Java Spring Boot.
+![Project Status](https://img.shields.io/badge/status-in%20progress-blue)
+![Java](https://img.shields.io/badge/Java-17-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green)
+![React](https://img.shields.io/badge/React-18-61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-blue)
 
-## Tech Stack
+A full-stack task management application that allows users to **create, update, delete, and organize tasks**.  
+Built with **React** for the frontend and **Java Spring Boot** for the backend, featuring JWT authentication and PostgreSQL database.
+
+---
+
+## 🌟 Features
+
+- **Authentication**
+  - Secure user login & registration
+  - JWT-based token authentication
+
+- **Task Management**
+  - Create, read, update, and delete tasks (CRUD)
+  - Assign categories and priorities
+  - Real-time updates (optional via WebSocket)
+
+- **User Experience**
+  - Responsive design
+  - Easy-to-use UI
+  - Error handling with clear messages
+
+- **Technical Features**
+  - RESTful API
+  - Spring Data JPA for database access
+  - Role-based security with Spring Security
+  - PostgreSQL integration
+  - Frontend state management with Redux Toolkit
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
-
 - Java 17
 - Spring Boot 3.x
 - Spring Security with JWT
@@ -14,74 +47,155 @@ A full-stack task management application built with React and Java Spring Boot.
 - Maven
 
 ### Frontend
-
 - React 18
 - Redux Toolkit
 - React Router
 - Axios
 - Tailwind CSS (optional)
 
-## Project Structure
+---
 
+## 📁 Project Structure
+
+```bash
 task-manager/
-├── backend/ # Spring Boot application
-├── frontend/ # React application
+├── backend/     # Spring Boot application
+│   ├── src/main/java/com/taskmanager/
+│   │   ├── controller
+│   │   ├── service
+│   │   ├── repository
+│   │   ├── model
+│   │   ├── dto
+│   │   ├── config
+│   │   ├── security
+│   │   ├── exception
+│   │   └── util
+│   ├── src/main/resources/
+│   │   └── db/migration
+│   └── pom.xml
+├── frontend/    # React application
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── redux/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── package.json
 └── README.md
+```
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
+- Java 17+
+- Node.js 18+
+- PostgreSQL 14+
+- Maven (or use the Maven wrapper)
 
-- Java 17 or higher
-- Node.js 18 or higher
-- PostgreSQL 14 or higher
-- Maven
+---
 
 ### Backend Setup
 
+1. Navigate to the backend:
+
+```bash
 cd backend
+```
+
+2. Install dependencies (Maven handles this automatically).
+
+3. Configure PostgreSQL:
+
+- Create databases:
+
+```sql
+CREATE DATABASE taskmanager_db;
+CREATE DATABASE taskmanager_dev;
+```
+
+- Update `application.yml` with your database credentials.
+
+4. Run the backend:
+
+```bash
+# Using Maven wrapper
 ./mvnw spring-boot:run
+
+# Or if Maven is installed
+mvn spring-boot:run
+```
+
+5. Verify backend is running:
+
+Open browser: [http://localhost:8080/api/test](http://localhost:8080/api/test)  
+Expected response: `Task Manager Backend is running!`
+
+---
 
 ### Frontend Setup
 
+1. Navigate to frontend:
+
+```bash
 cd frontend
+```
+
+2. Install dependencies:
+
+```bash
 npm install
+```
+
+3. Run the frontend dev server:
+
+```bash
 npm run dev
+```
 
-### Features
+4. Open in browser:
 
-- User authentication with JWT
-- Create, read, update, and delete tasks
-- Responsive design
-- Real-time updates
-- Task categories and priorities
+```
+http://localhost:5173
+```
 
-### API Documentation
+---
 
-API documentation will be available at /swagger-ui.html when running.
+## 📡 API Endpoints
 
-### 11. Create a Shell Script to Run Everything (Optional)
+### Authentication
 
-# Create a helper script
+- `POST /api/auth/register` – Register a new user  
+- `POST /api/auth/login` – Login and receive JWT token  
 
+### Tasks
+
+- `GET /api/tasks` – Retrieve all tasks  
+- `POST /api/tasks` – Create a new task  
+- `PUT /api/tasks/{id}` – Update a task  
+- `DELETE /api/tasks/{id}` – Delete a task  
+
+> All `/api/tasks` routes require Authorization header with JWT:  
+> `Authorization: Bearer <token>`
+
+---
+
+## 📝 Shell Script to Initialize Backend Structure (Optional)
+
+```bash
 cat > setup-backend.sh << 'EOF'
 #!/bin/bash
 
 echo "🚀 Setting up Task Manager Backend..."
 
-# Create directory structure
-
-echo "📁 Creating directory structure..."
 mkdir -p backend/src/main/java/com/taskmanager/{controller,service,repository,model,dto,config,security,exception,util}
 mkdir -p backend/src/main/resources/db/migration
 mkdir -p backend/src/test/java/com/taskmanager/{controller,service,repository}
 
-# Make the script executable
-
 chmod +x setup-backend.sh
 
-echo "✅ Backend structure created successfully!"
-echo ""
+echo "✅ Backend structure created!"
 echo "Next steps:"
 echo "1. cd backend"
 echo "2. ./mvnw spring-boot:run"
@@ -89,39 +203,44 @@ echo "3. Test the API at http://localhost:8080/api/test"
 EOF
 
 chmod +x setup-backend.sh
+```
 
-### 🚀 Running the Backend
+---
 
-Now that we have the structure, let's run it:
+## ✅ Notes & Tips
 
-# Navigate to backend
+1. Ensure PostgreSQL is running before starting backend.  
+2. Check that credentials in `application.yml` match your PostgreSQL setup.  
+3. If ports conflict, adjust `server.port` in `application.yml` (default: 8080).  
 
-cd backend
+---
 
-# If you have Maven installed
+## 🌍 Deployment (Optional)
 
-mvn spring-boot:run
+- Frontend: Vercel / Netlify  
+- Backend: Heroku / Render / Railway  
 
-# Or using the wrapper
+Make sure to update frontend `.env` with backend URL for production.
 
-./mvnw spring-boot:run
+---
 
-### ✅ Verify It Works
+## 📌 Future Improvements
 
-Once running, open your browser and go to:
-http://localhost:8080/api/test
+- WebSocket real-time task updates  
+- Task reminders/notifications  
+- User roles & permissions  
+- File attachments for tasks  
+- Improved UI/UX with Tailwind or Material UI
 
-You should see: Task Manager Backend is running!
+---
 
-### 📝 Important Notes
+## 📄 License
 
-1. Make sure PostgreSQL is installed and running before starting the backend
-2. Create the database in PostgreSQL:
-   CREATE DATABASE taskmanager_db;
-   CREATE DATABASE taskmanager_dev;
+MIT License
 
-3. If you get connection errors, check:
+---
 
-- PostgreSQL is running: sudo service postgresql status (Linux) or check Services (Windows)
-- Database credentials in application.yml match your PostgreSQL setup
-- Database exists: psql -U postgres -c "\l"
+## 🙌 Acknowledgements
+
+- Inspired by full-stack project challenges  
+- JWT auth implemented following official Spring Security guidelines
